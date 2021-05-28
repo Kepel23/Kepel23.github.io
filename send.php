@@ -1,25 +1,32 @@
 <?php
-    // несколько получателей
-    $to  = 'anton_sergeev_456@mail.ru' . ', ';  // обратите внимание на запятую
+//if "email" variable is filled out, send email
+  if (isset($_REQUEST['email']))  {
 
+  //Email information
+  $admin_email = "someone@example.com";
+  $email = $_REQUEST['email'];
+  $subject = $_REQUEST['subject'];
+  $comment = $_REQUEST['comment'];
 
-    // тема письма
-    $subject = 'Письмо с моего сайта';
+  //send email
+  mail($admin_email, "$subject", $comment, "From:" . $email);
 
-    // текст письма
-    $message = 'Пользователь' . $_POST['name'] . ' отправил вам письмо:<br />' . $_POST['message'] . '<br />
-    Связяться с ним можно по email <a href="mailto:' . $_POST['email'] . '">' . $_POST['email'] . '</a>'
-    ;
+  //Email response
+  echo "Thank you for contacting us!";
+  }
 
-    // Для отправки HTML-письма должен быть установлен заголовок Content-type
-    $headers  = 'MIME-Version: 1.0' . "\r\n";
-    $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n"; 
+  //if "email" variable is not filled out, display the form
+  else  {
+?>
 
-    // Дополнительные заголовки
-    $headers .= 'To: Иван <anton_sergeev_456@mail.ru>' . "\r\n"; // Свое имя и email
-    $headers .= 'From: '  . $_POST['name'] . '<' . $_POST['email'] . '>' . "\r\n";
+ <form method="post">
+  Email: <input name="email" type="text" /><br />
+  Subject: <input name="subject" type="text" /><br />
+  Message:<br />
+  <textarea name="comment" rows="15" cols="40"></textarea><br />
+  <input type="submit" value="Submit" />
+  </form>
 
-
-    // Отправляем
-    mail($to, $subject, $message, $headers);
+<?php
+  }
 ?>
