@@ -553,13 +553,12 @@
 
 
     
-    <form action="send.php" method="POST">
-      <input type="text" name="fio" placeholder="Укажите ФИО" required>
-      <input type="text" name="email" placeholder="Укажите e-mail" required>
-      <input type="submit" value="Отправить">
-    </form> 
-
-    <a href="mailto:anton_sergeev_456@mail.ru">Mailto</a>
+    <form method="post">
+      Ваше имя: <input type="text" name="name" placeholder="Иван">
+      Email для связи: <input type="email" name="email" placeholder="адрес электронной почты">
+      Ваше сообщение: <textarea name="message" rows="5"></textarea>
+      <input type="submit" value="отправить">
+    </form>
     
 
 

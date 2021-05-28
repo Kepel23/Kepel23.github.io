@@ -1,24 +1,25 @@
 <?php
-    //проверяем, существуют ли переменные в массиве POST
-    if (!isset($_POST['fio']) and !isset($_POST['email'])) {
+    // несколько получателей
+    $to  = 'anton_sergeev_456@mail.ru' . ', ';  // обратите внимание на запятую
 
-        } 
-        
-    else {
-        //показываем форму
-        $fio = $_POST['fio'];
-        $email = $_POST['email'];
-        $fio = htmlspecialchars($fio);
-        $email = htmlspecialchars($email);
-        $fio = urldecode($fio);
-        $email = urldecode($email);
-        $fio = trim($fio);
-        $email = trim($email);
-        if (mail("anton_sergeev_456@mail.ru@mail.ru", "Заявка с сайта", "ФИО:" . $fio . ". E-mail: " . $email, "From: example2@mail.ru \r\n")) {
-             echo "Сообщение успешно отправлено";
-        } 
-        else {
-             echo "При отправке сообщения возникли ошибки";
-             }
-        }
+
+    // тема письма
+    $subject = 'Письмо с моего сайта';
+
+    // текст письма
+    $message = 'Пользователь' . $_POST['name'] . ' отправил вам письмо:<br />' . $_POST['message'] . '<br />
+    Связяться с ним можно по email <a href="mailto:' . $_POST['email'] . '">' . $_POST['email'] . '</a>'
+    ;
+
+    // Для отправки HTML-письма должен быть установлен заголовок Content-type
+    $headers  = 'MIME-Version: 1.0' . "\r\n";
+    $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n"; 
+
+    // Дополнительные заголовки
+    $headers .= 'To: Иван <anton_sergeev_456@mail.ru>' . "\r\n"; // Свое имя и email
+    $headers .= 'From: '  . $_POST['name'] . '<' . $_POST['email'] . '>' . "\r\n";
+
+
+    // Отправляем
+    mail($to, $subject, $message, $headers);
 ?>
