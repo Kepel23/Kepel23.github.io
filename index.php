@@ -561,7 +561,7 @@
     </form>
     
 
-    Привет, сегодня <?php echo date('l, F jS, Y'); ?>.
+    Привет, сегодня <?php echo date('l, F jS, Y'); ?>
 
 
 
