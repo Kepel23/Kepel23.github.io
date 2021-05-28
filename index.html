@@ -561,11 +561,14 @@
     </form>
     
 
-    <p action="test.php">
-      Привет, сегодня 
-    </p> 
+    Привет, сегодня 
+    <?php 
+    echo date('l, F jS, Y'); 
+    ?>
 
+    <?php require 'test.php'; ?>
 
+    <?php echo 'Привет, я PHP!'; ?>
 
   
   </body>
